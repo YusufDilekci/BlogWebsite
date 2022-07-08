@@ -34,10 +34,10 @@ app.get("/", function(req, res){
 
 let temp =true;
 app.get("/posts/:topic", function(req, res){
-  let requestedTitle = req.params.topic;
+  let requestedTitle = _.lowerCase(req.params.topic);
   
   for(var i=0; i<posts.length; i++){
-    if(requestedTitle === _.lowerCase(posts[i].title) || requestedTitle === _.kebabCase(posts[i].title) ) {
+    if(requestedTitle === _.lowerCase(posts[i].title) ) {
       res.render("post", {postTitle: posts[i].title, postContent: posts[i].post})
       console.log("Match found");
       temp= false;
